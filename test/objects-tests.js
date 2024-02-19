@@ -3,7 +3,7 @@ const tasks = require('../src/objects-tasks');
 it.optional = require('../extensions/it-optional');
 
 describe('objects-tasks', () => {
-  it.optional('deepCopy should return deep copy of an object', () => {
+  it.optional('shallowCopy should return shallowCopy copy of an object', () => {
     [
       {
         obj: { a: 2, b: 5 },
@@ -18,11 +18,11 @@ describe('objects-tasks', () => {
         expected: {},
       },
     ].forEach((data) => {
-      assert.deepStrictEqual(tasks.deepCopy(data.obj), data.expected);
+      assert.deepStrictEqual(tasks.shallowCopy(data.obj), data.expected);
     });
   });
 
-  it.optional('deepCopy should return independent object', () => {
+  it.optional('shallowCopy should not return the source object', () => {
     [
       {
         obj: { a: 2, b: 5 },
@@ -34,7 +34,7 @@ describe('objects-tasks', () => {
         obj: {},
       },
     ].forEach((data) => {
-      assert.notStrictEqual(tasks.deepCopy(data.obj), data.obj);
+      assert.notStrictEqual(tasks.shallowCopy(data.obj), data.obj);
     });
   });
 
@@ -639,8 +639,8 @@ describe('objects-tasks', () => {
 });
 
 describe('object-tasks optimal implementation', () => {
-  it.optional('optimal implementation of deepCopy', function test() {
-    const fnStr = tasks.deepCopy.toString();
+  it.optional('optimal implementation of shallowCopy', function test() {
+    const fnStr = tasks.shallowCopy.toString();
     if (!fnStr.includes('return')) {
       this.skip();
     }

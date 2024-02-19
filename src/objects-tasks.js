@@ -7,18 +7,17 @@
  ************************************************************************************************ */
 
 /**
- * Returns deep copy of an object.
- * The copied object should be completely independent of the original one.
+ * Returns shallow copy of an object.
  *
  * @param {Object} obj - an object to copy
  * @return {Object}
  *
  * @example
- *    deepCopy({a: 2, b: 5}) => {a: 2, b: 5}
- *    deepCopy({a: 2, b: { a: [1, 2, 3]}}) => {a: 2, b: { a: [1, 2, 3]}}
- *    deepCopy({}) => {}
+ *    shallowCopy({a: 2, b: 5}) => {a: 2, b: 5}
+ *    shallowCopy({a: 2, b: { a: [1, 2, 3]}}) => {a: 2, b: { a: [1, 2, 3]}}
+ *    shallowCopy({}) => {}
  */
-function deepCopy(/* obj */) {
+function shallowCopy(/* obj */) {
   throw new Error('Not implemented');
 }
 
@@ -71,7 +70,8 @@ function compareObjects(/* obj1, obj2 */) {
 }
 
 /**
- * Checks if the source object is empty. Returns true if the object contains no own properties, false otherwise.
+ * Checks if the source object is empty.
+ * Returns true if the object contains no enumerable own properties, false otherwise.
  *
  * @param {Object} obj - The object to check
  * @return {boolean} - True if the object is empty, false otherwise
@@ -331,7 +331,7 @@ const cssSelectorBuilder = {
 };
 
 module.exports = {
-  deepCopy,
+  shallowCopy,
   mergeObjects,
   removeProperties,
   compareObjects,
