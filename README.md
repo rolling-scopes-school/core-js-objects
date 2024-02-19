@@ -1,19 +1,19 @@
-# Core JS Arrays
+# Core JS Objects
 
 :warning: **Please note that you mustn't open PRs that contains the answers to this repo!**
 
 However, PRs with the fixes or proposals are welcomed!
 
 ## Task
-The goal of the assignment is to learn how to work with arrays in JS.
+The goal of the assignment is to learn how to work with objects in JS.
 
 **Active usage of [documentation](https://developer.mozilla.org/en-US/) is strongly recommended!**
 
 ## Prepare and test
 1. Install Node.js
-2. Fork this repository: https://github.com/rolling-scopes-school/core-js-arrays
-3. Clone your newly created repo: `https://github.com/<%your_github_username%>/core-js-arrays/`
-4. Go to folder `core-js-arrays`
+2. Fork this repository: https://github.com/rolling-scopes-school/core-js-objects
+3. Clone your newly created repo: `https://github.com/<%your_github_username%>/core-js-objects/`
+4. Go to folder `core-js-objects`
 5. To install all dependencies use `npm install`
 6. Each task is usually a regular function:
     ```javascript
@@ -34,7 +34,7 @@ The goal of the assignment is to learn how to work with arrays in JS.
       }
     ```
     Read the task description in the comment above the function. Try to understand the idea. You can see the tests prepared if you don't understand it.
-7. Write your code in `src/arrays-tasks.js`.
+7. Write your code in `src/objects-tasks.js`.
 
     Uncomment the incoming parameters:
 
@@ -54,7 +54,7 @@ The goal of the assignment is to learn how to work with arrays in JS.
 1. Commit and push your solutions to your fork
 2. Open rs app and login
 3. Go to submit task page
-4. Select your task (Core JS Arrays)
+4. Select your task (Core JS Objects)
 5. Press submit button and enjoy
 
 ## Notes

@@ -1,7 +1,7 @@
 {
-  "name": "core-js-arrays",
+  "name": "core-js-objects",
   "version": "1.0.0",
-  "description": "Core JS Arrays",
+  "description": "Core JS Objects",
   "main": "index.js",
   "scripts": {
     "test": "npm run lint && mocha",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rolling-scopes-school/core-js-arrays.git"
+    "url": "git+https://github.com/rolling-scopes-school/core-js-objects.git"
   },
   "author": "valerydluski, natein",
   "license": "MIT",
@@ -24,7 +24,7 @@
     "prettier": "^3.0.3"
   },
   "bugs": {
-    "url": "https://github.com/rolling-scopes-school/core-js-arrays/issues"
+    "url": "https://github.com/rolling-scopes-school/core-js-objects/issues"
   },
-  "homepage": "https://github.com/rolling-scopes-school/core-js-arrays#readme"
+  "homepage": "https://github.com/rolling-scopes-school/core-js-objects#readme"
 }
