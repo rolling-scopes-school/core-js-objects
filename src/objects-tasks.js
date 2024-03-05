@@ -206,10 +206,11 @@ function sellTickets(queue) {
 function Rectangle(width, height) {
   this.width = width;
   this.height = height;
-  this.getArea = function () {
-    return this.width * this.height;
-  };
 }
+
+Rectangle.prototype.getArea = function getArea() {
+  return this.width * this.height;
+};
 
 /**
  * Returns the JSON representation of specified object
