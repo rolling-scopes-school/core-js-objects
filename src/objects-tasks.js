@@ -17,9 +17,19 @@
  *    shallowCopy({a: 2, b: { a: [1, 2, 3]}}) => {a: 2, b: { a: [1, 2, 3]}}
  *    shallowCopy({}) => {}
  */
-function shallowCopy(/* obj */) {
-  throw new Error('Not implemented');
+function shallowCopy(obj) {
+  const newObj = {};
+  const objKeys = Object.keys(obj);
+  for (let i = 0; i < objKeys.length; i += 1) {
+    const key = objKeys[i];
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      newObj[key] = obj[key];
+    }
+  }
+  return newObj;
 }
+
+console.log(shallowCopy({ a: 2, b: 5 }));
 
 /**
  * Merges array of objects into a single object. If there are overlapping keys, the values
@@ -32,9 +42,23 @@ function shallowCopy(/* obj */) {
  *    mergeObjects([{a: 1, b: 2}, {b: 3, c: 5}]) => {a: 1, b: 5, c: 5}
  *    mergeObjects([]) => {}
  */
-function mergeObjects(/* objects */) {
-  throw new Error('Not implemented');
+function mergeObjects(objects) {
+  return objects.reduce((acc, curr) => {
+    Object.keys(curr).forEach((key) => {
+      acc[key] = Object.prototype.hasOwnProperty.call(acc, key)
+        ? acc[key] + curr[key]
+        : curr[key];
+    });
+    return acc;
+  }, {});
 }
+
+console.log(
+  mergeObjects([
+    { a: 1, b: 2 },
+    { b: 3, c: 5 },
+  ])
+);
 
 /**
  * Removes a properties from an object.
