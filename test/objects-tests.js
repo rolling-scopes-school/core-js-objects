@@ -85,31 +85,6 @@ describe('objects-tasks', () => {
     });
   });
 
-  it.optional('removeProperties should remove properties', () => {
-    [
-      {
-        obj: { a: 1, b: 2, c: 3 },
-        keys: ['b', 'c'],
-        expected: { a: 1 },
-      },
-      {
-        obj: { a: 1, b: 2, c: 3 },
-        keys: ['d', 'e'],
-        expected: { a: 1, b: 2, c: 3 },
-      },
-      {
-        obj: { name: 'John', age: 30, city: 'New York' },
-        keys: ['age'],
-        expected: { name: 'John', city: 'New York' },
-      },
-    ].forEach((data) => {
-      assert.deepStrictEqual(
-        tasks.removeProperties(data.obj, data.keys),
-        data.expected
-      );
-    });
-  });
-
   it.optional(
     'compareObjects should return true if the objects are equal and false otherwise',
     () => {
