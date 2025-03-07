@@ -362,7 +362,104 @@ function group(array, keySelector, valueSelector) {
  */
 
 const cssSelectorBuilder = {
-  
+  selectors: [],
+
+  element(value) {
+    this.validateSelectorPart('element');
+    return this.clone(`${value}`);
+  },
+
+  id(value) {
+    this.validateSelectorPart('id');
+    return this.clone(`#${value}`);
+  },
+
+  class(value) {
+    this.validateSelectorPart('class');
+    return this.clone(`.${value}`);
+  },
+
+  attr(value) {
+    this.validateSelectorPart('attr');
+    return this.clone(`[${value}]`);
+  },
+
+  pseudoClass(value) {
+    this.validateSelectorPart('pseudoClass');
+    return this.clone(`:${value}`);
+  },
+
+  pseudoElement(value) {
+    this.validateSelectorPart('pseudoElement');
+    return this.clone(`::${value}`);
+  },
+
+  combine(selector1, combinator, selector2) {
+    const combinedSelector = `${selector1.stringify()} ${combinator} ${selector2.stringify()}`;
+    return this.clone(combinedSelector);
+  },
+
+  stringify() {
+    return this.selectors.join('');
+  },
+
+  validateSelectorPart(type) {
+    const counts = {
+      element: this.selectors.filter((part) => !/[#.:[]/.test(part)).length,
+      id: this.selectors.filter((part) => part.startsWith('#')).length,
+      pseudoElement: this.selectors.filter((part) => part.startsWith('::'))
+        .length,
+    };
+
+    if (type === 'element' && counts.element > 0) {
+      throw new Error(
+        'Element, id and pseudo-element should not occur more then one time inside the selector'
+      );
+    }
+    if (type === 'id' && counts.id > 0) {
+      throw new Error(
+        'Element, id and pseudo-element should not occur more then one time inside the selector'
+      );
+    }
+    if (type === 'pseudoElement' && counts.pseudoElement > 0) {
+      throw new Error(
+        'Element, id and pseudo-element should not occur more then one time inside the selector'
+      );
+    }
+
+    const order = [
+      'element',
+      'id',
+      'class',
+      'attr',
+      'pseudoClass',
+      'pseudoElement',
+    ];
+    const currentOrder = this.selectors.map((part) => {
+      if (part.startsWith('#')) return 'id';
+      if (part.startsWith('.')) return 'class';
+      if (part.startsWith('[')) return 'attr';
+      if (part.startsWith('::')) return 'pseudoElement';
+      if (part.startsWith(':')) return 'pseudoClass';
+      return 'element';
+    });
+
+    const lastType = currentOrder[currentOrder.length - 1] || '';
+    const lastIndex = order.indexOf(lastType);
+    const currentIndex = order.indexOf(type);
+
+    if (currentIndex < lastIndex) {
+      throw new Error(
+        `Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element`
+      );
+    }
+  },
+
+  clone(value) {
+    const newObj = Object.create(cssSelectorBuilder);
+    newObj.selectors = [...this.selectors, value];
+    return newObj;
+  },
 };
 
 module.exports = {
