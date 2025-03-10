@@ -151,7 +151,6 @@ function makeWord(lettersObject) {
  */
 function sellTickets(queue) {
   let cash = 0;
-  let result = true;
   while (queue.length > 0) {
     const item = queue.shift();
     if (item === 25) {
@@ -162,11 +161,11 @@ function sellTickets(queue) {
         cash += item;
         cash -= change;
       } else {
-        result = false;
+        return false;
       }
     }
   }
-  return result;
+  return true;
 }
 
 /**
